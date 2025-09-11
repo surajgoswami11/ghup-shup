@@ -27,7 +27,7 @@ export const useAuthStore = create((set) => ({
       set({ authUser: res.data });
       toast.success("Account created successfully");
     } catch (error) {
-      toast.error(error.res.data.message);
+      toast.error(error.response?.data.message);
     } finally {
       set({ isSigninUp: false });
     }
@@ -38,7 +38,7 @@ export const useAuthStore = create((set) => ({
       set({ authUser: res.data });
       toast.success("Logged in sucessfully");
     } catch (error) {
-      toast.error(error.res.data.message);
+      toast.error(error.response?.data.message);
     }
   },
   logout: async () => {
@@ -47,7 +47,7 @@ export const useAuthStore = create((set) => ({
       set({ authUser: null });
       toast.success("Logout successfully");
     } catch (error) {
-      toast.error(error.res.data.message);
+      toast.error(error.response?.data.message);
     }
   },
   updateUser: async (data) => {
@@ -58,7 +58,7 @@ export const useAuthStore = create((set) => ({
       toast.success("Profile updated successfully");
     } catch (error) {
       console.log(error);
-      toast.error(error.res.data.message);
+      toast.error(error.response?.data.message);
     }
   },
 }));

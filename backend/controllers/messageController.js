@@ -59,7 +59,7 @@ exports.sendingMessage = async (req, res) => {
     // this is other person id
     const reciverId = req.params.id;
     // this is own id
-    const senderId = req.params._id;
+    const senderId = req.user._id;
 
     let imageUrl;
 
