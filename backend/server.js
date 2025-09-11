@@ -3,9 +3,9 @@ const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 dotenv.config({ debug: true });
 const cors = require("cors");
+const app = require("./lib/socket");
 
 //
-const app = express();
 const authRoutes = require("./routes/authRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const connectDB = require("./lib/db");
