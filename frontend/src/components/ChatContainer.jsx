@@ -41,6 +41,16 @@ export default function ChatContainer() {
                                 {new Date(message.createdAt).toLocaleTimeString()}
                             </time>
                         </div>
+                        <div className="flex chat-bubble">
+                            {message.image && (
+                                <img
+                                    src={message?.image}
+                                    alt="attchment"
+                                    className="sm:max-w-[200px] rounded-mb mb-2"
+                                />
+                            )}
+                            {message.text && <p>{message.text}</p>}
+                        </div>
                     </div>
                 ))}
             </div>
