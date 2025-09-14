@@ -1,6 +1,7 @@
 const User = require("../models/userModel");
 const Message = require("../models/messageModel");
 const cloudinary = require("cloudinary");
+const { getReciverSocketId, io } = require("../lib/socket");
 
 // getting all user expect own
 exports.getUsers = async (req, res) => {
@@ -77,6 +78,13 @@ exports.sendingMessage = async (req, res) => {
 
     await newMessage.save();
 
+    //
+    const reciverSocketId = getReciverSocketId(reciverId);
+    if (reciverSocketId) {
+      io.to(reciverSocketId).emit("newMessage", newMessage);
+    }
+
+    //
     res.status(201).json({ success: true, newMessage });
   } catch (error) {
     console.log(error);
