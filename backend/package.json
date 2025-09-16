@@ -4,7 +4,7 @@
   "description": "this is a chat app which is using socket and react for a full fledge chat app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "author": "suraj goswami",
   "license": "ISC",
