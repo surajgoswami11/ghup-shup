@@ -5,13 +5,12 @@ name: GhupShup Chat-App
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -20,30 +19,25 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
 
-
-# backend render run
-# install ependance and goes to backend directory
-    - name: Backend Dependency
-      run: ./backend && npm install
-
-    # create build and run
-    - name: Build Backend
-      run: ./backend && npm run build --if-present
-
-
-      # frontend run veercel side
-    - name: Frontend Directory
-      run: ./frontend && npm install
+      # backend render run
+      # install ependance and goes to backend directory
+      - name: Backend Dependency
+        run: cd backend && npm install
 
       # create build and run
-    - name: Build Frontend
-      run: ./frontend && npm run build --if-present
+      - name: Build Backend
+        run: cd backend && npm run build --if-present
 
+        # frontend run veercel side
+      - name: Frontend Directory
+        run: cd frontend && npm install
 
-    
+        # create build and run
+      - name: Build Frontend
+        run: cd frontend && npm run build --if-present
